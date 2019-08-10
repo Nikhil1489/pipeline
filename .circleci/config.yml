@@ -6,8 +6,10 @@ version: 2
 jobs:
   test:
     docker:
+      - FROM alpine:3.9
+      - ENV NODE_VERSION 10.16.2
       # specify the version you desire here
-      - image: circleci/node:10.15.3-browsers
+      #- image: circleci/node:10.15.3-browsers
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -77,3 +79,5 @@ workflows:
     jobs:
       - test
       - build
+      requires:
+            - test
