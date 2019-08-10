@@ -4,7 +4,7 @@
 #
 version: 2
 jobs:
-  test_dev:
+  acceptance_test_1:
     docker:
       # specify the version you desire here
       - image: circleci/node:10.15.3-browsers
@@ -15,10 +15,6 @@ jobs:
       # - image: circleci/mongo:3.4.4
 
     working_directory: ~/repo
-
-    branches:
-          only:  # only branches matching the below regex filters will run
-            - master
 
     steps:
       - checkout
@@ -52,10 +48,6 @@ jobs:
       # - image: circleci/mongo:3.4.4
 
     working_directory: ~/repo
-      
-    branches:
-          only:  # only branches matching the below regex filters will run
-            - master
 
     steps:
       - checkout
@@ -115,9 +107,13 @@ jobs:
 
 workflows:
   version: 2
-  dev_stage_pre-prod:
+  build_accept_deploy:
     jobs:
-      - test_dev:
-            branches:
-              only:  # only branches matching the below regex filters will run
-                - master
+      - build
+      - acceptance_test_1:
+          type: approval
+          requires:
+            - build
+      - deploy:
+          requires:
+            - acceptance_test_1
