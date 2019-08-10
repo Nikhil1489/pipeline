@@ -35,4 +35,5 @@ jobs:
 
       # run tests!
       # - run: yarn test
-      - run: ng build
+      - run: npm run build
+      - run: echo "build success"
