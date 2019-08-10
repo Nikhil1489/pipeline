@@ -117,7 +117,8 @@ workflows:
       - acceptance_test_1:
           filters:
             branches:
-              only: Development
+              only: 
+                - Development
       - deploy:
           requires:
                 - acceptance_test_1
