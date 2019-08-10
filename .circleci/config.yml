@@ -16,6 +16,10 @@ jobs:
 
     working_directory: ~/repo
 
+    branches:
+          only:  # only branches matching the below regex filters will run
+            - master
+
     steps:
       - checkout
 
@@ -48,6 +52,10 @@ jobs:
       # - image: circleci/mongo:3.4.4
 
     working_directory: ~/repo
+      
+    branches:
+          only:  # only branches matching the below regex filters will run
+            - master
 
     steps:
       - checkout
