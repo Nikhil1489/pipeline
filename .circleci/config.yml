@@ -16,7 +16,7 @@ jobs:
 
     working_directory: ~/repo
     branches:
-          only:
+          except:
           - Development
 
     steps:
@@ -52,7 +52,7 @@ jobs:
 
     working_directory: ~/repo
     branches:
-          only:
+          except:
           - Development
 
     steps:
@@ -90,7 +90,7 @@ jobs:
     working_directory: ~/repo
 
     branches:
-          only:
+          except:
           - Development
 
     steps:
@@ -120,7 +120,15 @@ workflows:
   build_accept_deploy:
     jobs:
       - build
+          filters:
+            branches:
+              only:
+                - Development
       - acceptance_test_1:
+          filters:
+            branches:
+              only:
+                - Development
           type: approval
           requires:
             - build
