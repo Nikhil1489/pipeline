@@ -76,9 +76,10 @@ workflows:
   build_accept_deploy:
     jobs:
       - build
-      - acceptance_test_1:
+      - Hold-For-Approval:
+         type: approval
           requires:
             - build
-      - deploy:
+      - acceptance_test_1:
           requires:
-            - acceptance_test_1
+            - Hold-For-Approval
