@@ -4,7 +4,7 @@
 #
 version: 2
 jobs:
-  test:
+  acceptance_test_1:
     docker:
       # specify the version you desire here
       - image: circleci/node:10.15.3-browsers
@@ -75,11 +75,10 @@ workflows:
   version: 2
   build_accept_deploy:
     jobs:
-      - test:
-      - build:
+      - build
+      - acceptance_test_1:
           requires:
-            - test
+            - build
       - deploy:
           requires:
-            - test
-            - build
+            - acceptance_test_1
