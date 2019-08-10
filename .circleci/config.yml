@@ -91,7 +91,7 @@ jobs:
 
     branches:
           only:
-          - master
+          - Development
 
     steps:
       - checkout
