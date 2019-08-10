@@ -76,19 +76,19 @@ workflows:
   build_accept_deploy:
     jobs:
       - build
-      - acceptance_test_1:
+      acceptance_test_1:
           requires:
             - build
-      - acceptance_test_2:
+      acceptance_test_2:
           requires:
             - build
-      - acceptance_test_3:
+      acceptance_test_3:
           requires:
             - build
-      - acceptance_test_4:
+      acceptance_test_4:
           requires:
             - build
-      - deploy:
+      deploy:
           requires:
             - acceptance_test_1
             - acceptance_test_2
